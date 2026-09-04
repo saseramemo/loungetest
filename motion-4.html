@@ -1,0 +1,2853 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOUNGE MOTION — Motion #4</title>
+
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ============================================================
+           LOUNGE MOTION — Motion Detail Style
+           ============================================================ */
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #0a0a0c;
+            color: #e8e8ec;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111116;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4a857;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e0b86a;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .text-gold {
+            color: #d4a857;
+        }
+        .text-muted {
+            color: #7a7a84;
+        }
+
+        /* ---------- Buttons ---------- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.7rem 2rem;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-primary {
+            background: #d4a857;
+            color: #0a0a0c;
+        }
+        .btn-primary:hover {
+            background: #e0b86a;
+            transform: scale(1.02);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .btn-primary:disabled:hover {
+            background: #d4a857;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #e8e8ec;
+            border: 1px solid #3a3a44;
+        }
+        .btn-secondary:hover {
+            border-color: #7a7a84;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .btn-outline-gold {
+            background: transparent;
+            color: #e8e8ec;
+            border: 1px solid #2a2a34;
+            border-radius: 30px;
+            padding: 0.5rem 1.4rem;
+            font-size: 0.8rem;
+        }
+        .btn-outline-gold:hover {
+            border-color: #d4a857;
+            color: #d4a857;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 1.2rem;
+            font-size: 0.75rem;
+        }
+
+        /* ---------- Navbar ---------- */
+        .navbar {
+            padding: 1rem 0;
+            border-bottom: 1px solid #16161c;
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 12, 0.92);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .logo span {
+            color: #d4a857;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #b0b0b8;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #fff;
+        }
+        .nav-links a.active {
+            color: #d4a857;
+        }
+
+        /* ---------- Breadcrumb ---------- */
+        .breadcrumb {
+            padding: 1.2rem 0 0.5rem;
+            font-size: 0.8rem;
+            color: #5a5a64;
+        }
+        .breadcrumb a {
+            color: #7a7a84;
+            transition: color 0.2s;
+        }
+        .breadcrumb a:hover {
+            color: #d4a857;
+        }
+        .breadcrumb .sep {
+            margin: 0 0.4rem;
+        }
+
+        /* ---------- Motion Detail Layout ---------- */
+        .detail-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            padding: 1.5rem 0 3rem;
+        }
+
+        /* LEFT: Preview + Info */
+        .detail-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .detail-preview {
+            background: #111116;
+            border: 1px solid #1a1a22;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .detail-preview video {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+            background: #0a0a0c;
+        }
+
+        /* Motion Info di bawah video */
+        .motion-info {
+            background: #111116;
+            border: 1px solid #1a1a22;
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+        }
+        .motion-info h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .motion-info .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin: 0.2rem 0 0.2rem;
+        }
+        .motion-info .tags span {
+            font-size: 0.6rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid #1e1e26;
+            color: #7a7a84;
+        }
+        .motion-info .price-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.2rem;
+        }
+        .motion-info .price {
+            color: #d4a857;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        .motion-info .badge-tier {
+            display: inline-block;
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.1rem 0.7rem;
+            border-radius: 30px;
+            backdrop-filter: blur(8px);
+            background: rgba(10, 10, 12, 0.6);
+            border: 1px solid #3a3a44;
+            color: #b0b0b8;
+        }
+        .motion-info .badge-tier.free {
+            border-color: #5a8a7a;
+            color: #5a8a7a;
+        }
+        .motion-info .badge-tier.basic {
+            border-color: #7a7af0;
+            color: #7a7af0;
+        }
+        .motion-info .badge-tier.plus {
+            border-color: #d4a857;
+            color: #d4a857;
+        }
+        .motion-info .badge-tier.premium {
+            border-color: #e0b86a;
+            color: #e0b86a;
+        }
+        .motion-info .desc {
+            color: #7a7a84;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        /* RIGHT: Order Form */
+        .detail-right {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .detail-right .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #b0b0b8;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.1rem;
+        }
+
+        /* ---------- Enchanting Table - Single Item Picker ---------- */
+        .enchant-section {
+            background: #111116;
+            border: 1px solid #1a1a22;
+            border-radius: 12px;
+            padding: 1.5rem 1.2rem;
+        }
+
+        .enchant-section .enchant-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #b0b0b8;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+
+        .enchant-section .enchant-icon {
+            text-align: center;
+            font-size: 2rem;
+            color: #d4a857;
+            margin-bottom: 0.5rem;
+        }
+
+        .enchant-section .enchant-icon i {
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%,
+            100% {
+                text-shadow: 0 0 10px rgba(212, 168, 87, 0.2);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(212, 168, 87, 0.5), 0 0 60px rgba(212, 168, 87, 0.2);
+            }
+        }
+
+        /* Item Picker - Combobox dengan Gambar */
+        .item-picker-single {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .item-picker-single label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #b0b0b8;
+        }
+
+        .item-picker-single .picker-wrapper {
+            position: relative;
+        }
+
+        .item-picker-single .picker-input {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #0a0a0c;
+            border: 2px solid #22222a;
+            border-radius: 8px;
+            padding: 0.6rem 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 56px;
+        }
+
+        .item-picker-single .picker-input:hover {
+            border-color: #3a3a4a;
+        }
+
+        .item-picker-single .picker-input.active {
+            border-color: #d4a857;
+            box-shadow: 0 0 20px rgba(212, 168, 87, 0.1);
+        }
+
+        .item-picker-single .picker-input .item-icon {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            flex-shrink: 0;
+            image-rendering: pixelated;
+        }
+
+        .item-picker-single .picker-input .item-label {
+            flex: 1;
+            font-size: 0.95rem;
+            color: #e8e8ec;
+            font-weight: 500;
+        }
+
+        .item-picker-single .picker-input .item-placeholder {
+            color: #5a5a64;
+            font-size: 0.9rem;
+        }
+
+        .item-picker-single .picker-input .picker-arrow {
+            color: #5a5a64;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .item-picker-single .picker-input .picker-arrow.open {
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown */
+        .item-picker-single .picker-dropdown {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            background: #111116;
+            border: 1px solid #22222a;
+            border-radius: 8px;
+            max-height: 240px;
+            overflow-y: auto;
+            display: none;
+            z-index: 50;
+            padding: 0.4rem;
+        }
+
+        .item-picker-single .picker-dropdown.open {
+            display: block;
+        }
+
+        .item-picker-single .picker-dropdown .search-box {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #0a0a0c;
+            border: 1px solid #1e1e26;
+            border-radius: 6px;
+            padding: 0.3rem 0.7rem;
+            margin-bottom: 0.4rem;
+            position: sticky;
+            top: 0;
+            background: #111116;
+            z-index: 2;
+        }
+
+        .item-picker-single .picker-dropdown .search-box input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #e8e8ec;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            width: 100%;
+            padding: 0.3rem 0;
+        }
+
+        .item-picker-single .picker-dropdown .search-box input::placeholder {
+            color: #5a5a64;
+        }
+
+        .item-picker-single .picker-dropdown .search-box i {
+            color: #5a5a64;
+            font-size: 0.85rem;
+        }
+
+        .item-picker-single .picker-dropdown .item-option {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.4rem 0.6rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .item-picker-single .picker-dropdown .item-option:hover {
+            background: rgba(212, 168, 87, 0.08);
+        }
+
+        .item-picker-single .picker-dropdown .item-option.selected {
+            background: rgba(212, 168, 87, 0.12);
+            border: 1px solid rgba(212, 168, 87, 0.2);
+        }
+
+        .item-picker-single .picker-dropdown .item-option .item-icon {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            flex-shrink: 0;
+            image-rendering: pixelated;
+        }
+
+        .item-picker-single .picker-dropdown .item-option .item-name {
+            font-size: 0.85rem;
+            color: #e8e8ec;
+        }
+
+        .item-picker-single .picker-dropdown .no-result {
+            padding: 0.8rem;
+            text-align: center;
+            color: #5a5a64;
+            font-size: 0.8rem;
+        }
+
+        /* Enchantment Level Display */
+        .enchant-level {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            padding: 0.4rem;
+            background: rgba(212, 168, 87, 0.05);
+            border: 1px solid rgba(212, 168, 87, 0.1);
+            border-radius: 6px;
+        }
+
+        .enchant-level .level-label {
+            font-size: 0.7rem;
+            color: #7a7a84;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .enchant-level .level-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #d4a857;
+        }
+
+        .enchant-level .level-value .level-max {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: #5a5a64;
+        }
+
+        /* ---------- Notes ---------- */
+        .notes-area textarea {
+            background: #0a0a0c;
+            border: 1px solid #22222a;
+            border-radius: 6px;
+            color: #e8e8ec;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            padding: 0.6rem 0.8rem;
+            resize: vertical;
+            min-height: 56px;
+            transition: border 0.2s;
+            width: 100%;
+        }
+        .notes-area textarea:focus {
+            outline: none;
+            border-color: #d4a857;
+        }
+        .notes-area textarea::placeholder {
+            color: #5a5a64;
+        }
+        .notes-area label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #b0b0b8;
+        }
+
+        /* ---------- Order Summary ---------- */
+        .order-summary {
+            background: #0a0a0c;
+            border: 1px solid #1e1e26;
+            border-radius: 6px;
+            padding: 0.6rem 0.8rem;
+        }
+        .order-summary .summary-label {
+            font-size: 0.6rem;
+            color: #5a5a64;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.1rem;
+        }
+        .order-summary pre {
+            font-family: 'Inter', monospace;
+            font-size: 0.75rem;
+            color: #b0b0b8;
+            white-space: pre-wrap;
+            word-break: break-word;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 0;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        /* ---------- Copy & Order Section ---------- */
+        .order-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .order-actions .btn {
+            width: 100%;
+        }
+
+        .order-actions .copy-feedback {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #2d8a5e;
+            display: none;
+        }
+        .order-actions .copy-feedback.show {
+            display: block;
+        }
+
+        /* Platform Order - muncul setelah copy */
+        .platform-section {
+            display: none;
+            flex-direction: column;
+            gap: 0.4rem;
+            animation: fadeIn 0.3s ease;
+        }
+        .platform-section.show {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .platform-section .platform-label {
+            font-size: 0.7rem;
+            color: #5a5a64;
+            text-align: center;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 0.5rem;
+        }
+        .method-btn {
+            background: transparent;
+            border: 1px solid #1e1e26;
+            border-radius: 6px;
+            padding: 0.5rem 0.3rem;
+            color: #b0b0b8;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.2rem;
+        }
+        .method-btn:hover {
+            border-color: #3a3a4a;
+            color: #e8e8ec;
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .method-btn i {
+            font-size: 1rem;
+        }
+        .method-btn .method-label {
+            font-size: 0.6rem;
+        }
+
+        /* ---------- Footer ---------- */
+        .footer {
+            border-top: 1px solid #16161c;
+            padding: 2rem 0 1.5rem;
+            color: #5a5a64;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        .footer .socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+        .footer .socials a {
+            color: #5a5a64;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+        .footer .socials a:hover {
+            color: #d4a857;
+        }
+
+        /* ---------- Loading ---------- */
+        .loading-items {
+            text-align: center;
+            padding: 0.5rem;
+            color: #5a5a64;
+            font-size: 0.8rem;
+        }
+        .loading-items i {
+            animation: spin 1s linear infinite;
+            margin-right: 0.4rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 1024px) {
+            .detail-wrap {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .method-grid {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem 1.4rem;
+            }
+            .method-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .motion-info h1 {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            .method-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .motion-info h1 {
+                font-size: 1rem;
+            }
+            .detail-preview video {
+                aspect-ratio: 16 / 9;
+            }
+            .item-picker-single .picker-input {
+                min-height: 48px;
+                padding: 0.4rem 0.7rem;
+            }
+            .item-picker-single .picker-input .item-icon {
+                width: 28px;
+                height: 28px;
+            }
+            .item-picker-single .picker-input .item-label {
+                font-size: 0.82rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    NAVBAR
+    ============================================================ -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">LOUNGE <span>MOTION</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Motion</a></li>
+                <li><a href="thumbnail.html">Thumbnail</a></li>
+                <li><a href="logo.html">Logo</a></li>
+                <li><a href="https://discord.gg/ya3xwGt7pb" target="_blank" rel="noopener">Discord</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
+    <main class="container">
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="index.html">Showcase</a>
+            <span class="sep">/</span>
+            <span class="text-gold">Motion #4</span>
+        </div>
+
+        <!-- Detail Wrap -->
+        <div class="detail-wrap">
+
+            <!-- LEFT: Preview + Info -->
+            <div class="detail-left">
+
+                <!-- Video -->
+                <div class="detail-preview">
+                    <video muted loop playsinline autoplay preload="metadata">
+                        <source src="assets/motion/MOTION-4.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <!-- Motion Info -->
+                <div class="motion-info" id="motionInfo">
+                    <!-- Diisi oleh JavaScript -->
+                </div>
+            </div>
+
+            <!-- RIGHT: Order Form -->
+            <div class="detail-right">
+
+                <!-- Enchanting Table - Single Item Picker -->
+                <div class="enchant-section">
+                    <div class="enchant-label"><i class="fas fa-book-open"></i> Enchanting Table</div>
+                    <div class="enchant-icon">
+                        <i class="fas fa-wand-magic-sparkles"></i>
+                    </div>
+
+                    <!-- Item Picker (Combobox dengan Gambar) -->
+                    <div class="item-picker-single">
+                        <label><i class="fas fa-cube"></i> Pilih Item untuk Enchant</label>
+                        <div class="picker-wrapper" id="pickerWrapper">
+                            <div class="picker-input" id="pickerInput">
+                                <img class="item-icon" id="selectedIcon" src="assets/item/book.png" alt="Item" />
+                                <span class="item-label" id="selectedLabel">Book</span>
+                                <i class="fas fa-chevron-down picker-arrow" id="pickerArrow"></i>
+                            </div>
+                            <div class="picker-dropdown" id="pickerDropdown">
+                                <div class="search-box">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="itemSearch" placeholder="Cari item untuk enchant..." />
+                                </div>
+                                <div id="itemList">
+                                    <div class="loading-items"><i class="fas fa-spinner"></i> Memuat item...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enchantment Level Display -->
+                    <div class="enchant-level">
+                        <span class="level-label"><i class="fas fa-star"></i> Enchantment Level</span>
+                        <span class="level-value">
+                            30
+                            <span class="level-max">/ 30</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Notes -->
+                <div class="notes-area">
+                    <label><i class="fas fa-pen"></i> Catatan (opsional)</label>
+                    <textarea id="notesInput" placeholder="Tulis catatan untuk motion ini..."></textarea>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <div class="summary-label">Order Summary</div>
+                    <pre id="orderSummary">LOUNGE MOTION — ORDER
+
+Motion: Memuat...
+Tier: -
+Price: -
+Tags: -
+Item: -
+Enchant Level: 30 / 30
+Notes: -</pre>
+                </div>
+
+                <!-- Order Actions -->
+                <div class="order-actions">
+
+                    <!-- Copy Button -->
+                    <button class="btn btn-primary" id="copyBtn" disabled>
+                        <i class="fas fa-spinner fa-spin"></i> Memuat...
+                    </button>
+                    <div class="copy-feedback" id="copyFeedback">
+                        <i class="fas fa-check-circle"></i> ORDER COPIED! Silakan pilih platform di bawah.
+                    </div>
+
+                    <!-- Platform Section (muncul setelah copy) -->
+                    <div class="platform-section" id="platformSection">
+                        <p class="platform-label">— Pilih platform untuk melanjutkan order —</p>
+                        <div class="method-grid">
+                            <button class="method-btn" data-method="discord">
+                                <i class="fa-brands fa-discord"></i>
+                                <span class="method-label">Discord</span>
+                            </button>
+                            <button class="method-btn" data-method="whatsapp">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span class="method-label">WhatsApp</span>
+                            </button>
+                            <button class="method-btn" data-method="googleform">
+                                <i class="fa-regular fa-file-lines"></i>
+                                <span class="method-label">Google Form</span>
+                            </button>
+                            <button class="method-btn" data-method="instagram">
+                                <i class="fa-brands fa-instagram"></i>
+                                <span class="method-label">Instagram</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="socials">
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+            <p>&copy; 2026 LOUNGE MOTION. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // 1.  KONFIGURASI MOTION #4 (EDIT DI SINI)
+        // ============================================================
+        const motionConfig = {
+            id: 4,
+            name: "Enchanting Table",
+            tier: "basic",
+            price: 10000,
+            description: "Max-level (level 30) enchanting.",
+            tags: ["UI", "ENCHANTING TABLE"],
+            preview: "assets/motion/MOTION-4.mp4",
+            googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc40cPUR7IRjFMRB9E5xA0Wpl66LCyHc2CnD_kH2PQRDt_1lw/viewform?usp=publish-editor",
+            whatsappNumber: "628152123852",
+            discordInvite: "https://discord.gg/ya3xwGt7pb",
+            instagramUsername: "lounge_motion"
+        };
+
+        // ============================================================
+        // 2.  STATE
+        // ============================================================
+        let items = [];
+        let isItemsLoaded = false;
+        let isCopied = false;
+        let selectedItem = null;
+
+        // ============================================================
+        // 3.  HELPER FUNCTIONS
+        // ============================================================
+
+        function parseItemLabel(filename) {
+            return filename
+                .replace(/_/g, ' ')
+                .replace(/\.png$/, '')
+                .replace(/\b\w/g, l => l.toUpperCase());
+        }
+
+        function formatPrice(price) {
+            if (price === 0) return 'FREE';
+            return 'Rp' + price.toLocaleString('id-ID');
+        }
+
+        // ============================================================
+        // 4.  LOAD ITEMS FROM JSON
+        // ============================================================
+
+        async function loadItems() {
+            try {
+                const response = await fetch('assets/item/items.json');
+                if (!response.ok) throw new Error('Gagal load items.json');
+                const itemFiles = await response.json();
+
+                items = itemFiles.map(filename => ({
+                    filename: filename,
+                    label: parseItemLabel(filename),
+                    path: 'assets/item/' + filename
+                }));
+
+                isItemsLoaded = true;
+                initializeDefaultItem();
+                renderMotionInfo();
+                renderItemList('');
+                updateSummary();
+                enableCopyButton();
+
+            } catch (error) {
+                console.error('Error loading items:', error);
+                useFallbackItems();
+            }
+        }
+
+        // ============================================================
+        // 5.  FALLBACK ITEMS
+        // ============================================================
+
+        function useFallbackItems() {
+            const fallbackFiles = [
+                
+    
+    "acacia_boat.png",
+    "acacia_button.png",
+    "acacia_chest_boat.png",
+    "acacia_door.png",
+    "acacia_fence_gate.png",
+    "acacia_fence.png",
+    "acacia_hanging_sign.png",
+    "acacia_leaves.png",
+    "acacia_log.png",
+    "acacia_planks.png",
+    "acacia_pressure_plate.png",
+    "acacia_sapling.png",
+    "acacia_shelf.png",
+    "acacia_sign.png",
+    "acacia_slab.png",
+    "acacia_stairs.png",
+    "acacia_trapdoor.png",
+    "acacia_wood.png",
+    "activator_rail.png",
+    "air.png",
+    "allay_spawn_egg.png",
+    "allium.png",
+    "amethyst_block.png",
+    "amethyst_cluster.png",
+    "amethyst_shard.png",
+    "ancient_debris.png",
+    "andesite.png",
+    "andesite_slab.png",
+    "andesite_stairs.png",
+    "andesite_wall.png",
+    "angler_pottery_sherd.png",
+    "anvil.png",
+    "apple.png",
+    "archer_pottery_sherd.png",
+    "armadillo_scute.png",
+    "armadillo_spawn_egg.png",
+    "armor_stand.png",
+    "arms_up_pottery_sherd.png",
+    "arrow.png",
+    "axolotl_bucket.png",
+    "axolotl_spawn_egg.png",
+    "azalea.png",
+    "azalea_leaves.png",
+    "azure_bluet.png",
+    "baked_potato.png",
+    "bamboo.png",
+    "bamboo_block.png",
+    "bamboo_button.png",
+    "bamboo_chest_raft.png",
+    "bamboo_door.png",
+    "bamboo_fence_gate.png",
+    "bamboo_fence.png",
+    "bamboo_hanging_sign.png",
+    "bamboo_mosaic.png",
+    "bamboo_mosaic_slab.png",
+    "bamboo_mosaic_stairs.png",
+    "bamboo_planks.png",
+    "bamboo_pressure_plate.png",
+    "bamboo_raft.png",
+    "bamboo_shelf.png",
+    "bamboo_sign.png",
+    "bamboo_slab.png",
+    "bamboo_stairs.png",
+    "bamboo_trapdoor.png",
+    "barrel.png",
+    "barrier.png",
+    "basalt.png",
+    "bat_spawn_egg.png",
+    "beacon.png",
+    "bedrock.png",
+    "bee_nest.png",
+    "bee_spawn_egg.png",
+    "beef.png",
+    "beehive.png",
+    "beetroot.png",
+    "beetroot_seeds.png",
+    "beetroot_soup.png",
+    "bell.png",
+    "big_dripleaf.png",
+    "birch_boat.png",
+    "birch_button.png",
+    "birch_chest_boat.png",
+    "birch_door.png",
+    "birch_fence_gate.png",
+    "birch_fence.png",
+    "birch_hanging_sign.png",
+    "birch_leaves.png",
+    "birch_log.png",
+    "birch_planks.png",
+    "birch_pressure_plate.png",
+    "birch_sapling.png",
+    "birch_shelf.png",
+    "birch_sign.png",
+    "birch_slab.png",
+    "birch_stairs.png",
+    "birch_trapdoor.png",
+    "birch_wood.png",
+    "black_banner.png",
+    "black_bed.png",
+    "black_bundle.png",
+    "black_candle.png",
+    "black_carpet.png",
+    "black_concrete.png",
+    "black_concrete_powder.png",
+    "black_dye.png",
+    "black_glazed_terracotta.png",
+    "black_harness.png",
+    "black_shulker_box.png",
+    "black_stained_glass.png",
+    "black_stained_glass_pane.png",
+    "black_terracotta.png",
+    "black_wool.png",
+    "blackstone.png",
+    "blackstone_slab.png",
+    "blackstone_stairs.png",
+    "blackstone_wall.png",
+    "blade_pottery_sherd.png",
+    "blast_furnace.png",
+    "blaze_powder.png",
+    "blaze_rod.png",
+    "blaze_spawn_egg.png",
+    "blue_banner.png",
+    "blue_bed.png",
+    "blue_bundle.png",
+    "blue_candle.png",
+    "blue_carpet.png",
+    "blue_concrete.png",
+    "blue_concrete_powder.png",
+    "blue_dye.png",
+    "blue_egg.png",
+    "blue_glazed_terracotta.png",
+    "blue_harness.png",
+    "blue_ice.png",
+    "blue_orchid.png",
+    "blue_shulker_box.png",
+    "blue_stained_glass.png",
+    "blue_stained_glass_pane.png",
+    "blue_terracotta.png",
+    "blue_wool.png",
+    "bogged_spawn_egg.png",
+    "bolt_armor_trim_smithing_template.png",
+    "bone.png",
+    "bone_block.png",
+    "bone_meal.png",
+    "book.png",
+    "bookshelf.png",
+    "bordure_indented_banner_pattern.png",
+    "bow.png",
+    "bowl.png",
+    "brain_coral.png",
+    "brain_coral_block.png",
+    "brain_coral_fan.png",
+    "bread.png",
+    "brewer_pottery_sherd.png",
+    "breeze_rod.png",
+    "breeze_spawn_egg.png",
+    "brewing_stand.png",
+    "brick.png",
+    "brick_slab.png",
+    "brick_stairs.png",
+    "brick_wall.png",
+    "bricks.png",
+    "brown_banner.png",
+    "brown_bed.png",
+    "brown_bundle.png",
+    "brown_candle.png",
+    "brown_carpet.png",
+    "brown_concrete.png",
+    "brown_concrete_powder.png",
+    "brown_dye.png",
+    "brown_egg.png",
+    "brown_glazed_terracotta.png",
+    "brown_harness.png",
+    "brown_mushroom.png",
+    "brown_mushroom_block.png",
+    "brown_shulker_box.png",
+    "brown_stained_glass.png",
+    "brown_stained_glass_pane.png",
+    "brown_terracotta.png",
+    "brown_wool.png",
+    "brush.png",
+    "bubble_coral.png",
+    "bubble_coral_block.png",
+    "bubble_coral_fan.png",
+    "bucket.png",
+    "budding_amethyst.png",
+    "bundle.png",
+    "burn_pottery_sherd.png",
+    "bush.png",
+    "cactus.png",
+    "cactus_flower.png",
+    "cake.png",
+    "calcite.png",
+    "calibrated_sculk_sensor.png",
+    "camel_spawn_egg.png",
+    "campfire.png",
+    "candle.png",
+    "carrot.png",
+    "carrot_on_a_stick.png",
+    "cartography_table.png",
+    "carved_pumpkin.png",
+    "cat_spawn_egg.png",
+    "cauldron.png",
+    "cave_spider_spawn_egg.png",
+    "chain.png",
+    "chain_command_block.png",
+    "chainmail_boots.png",
+    "chainmail_chestplate.png",
+    "chainmail_helmet.png",
+    "chainmail_leggings.png",
+    "charcoal.png",
+    "cherry_boat.png",
+    "cherry_button.png",
+    "cherry_chest_boat.png",
+    "cherry_door.png",
+    "cherry_fence.png",
+    "cherry_fence_gate.png",
+    "cherry_hanging_sign.png",
+    "cherry_leaves.png",
+    "cherry_log.png",
+    "cherry_planks.png",
+    "cherry_pressure_plate.png",
+    "cherry_sapling.png",
+    "cherry_shelf.png",
+    "cherry_sign.png",
+    "cherry_slab.png",
+    "cherry_stairs.png",
+    "cherry_trapdoor.png",
+    "cherry_wood.png",
+    "chest.png",
+    "chest_minecart.png",
+    "chicken.png",
+    "chicken_spawn_egg.png",
+    "chipped_anvil.png",
+    "chiseled_bookshelf.png",
+    "chiseled_copper.png",
+    "chiseled_deepslate.png",
+    "chiseled_nether_bricks.png",
+    "chiseled_polished_blackstone.png",
+    "chiseled_quartz_block.png",
+    "chiseled_red_sandstone.png",
+    "chiseled_sandstone.png",
+    "chiseled_stone_bricks.png",
+    "chiseled_tuff.png",
+    "chiseled_tuff_bricks.png",
+    "chorus_flower.png",
+    "chorus_fruit.png",
+    "chorus_plant.png",
+    "clay.png",
+    "clay_ball.png",
+    "clock.png",
+    "closed_eyeblossom.png",
+    "coal.png",
+    "coal_block.png",
+    "coal_ore.png",
+    "coarse_dirt.png",
+    "coast_armor_trim_smithing_template.png",
+    "cobbled_deepslate.png",
+    "cobbled_deepslate_slab.png",
+    "cobbled_deepslate_stairs.png",
+    "cobbled_deepslate_wall.png",
+    "cobblestone.png",
+    "cobblestone_slab.png",
+    "cobblestone_stairs.png",
+    "cobblestone_wall.png",
+    "cobweb.png",
+    "cocoa_beans.png",
+    "cod.png",
+    "cod_bucket.png",
+    "cod_spawn_egg.png",
+    "command_block.png",
+    "command_block_minecart.png",
+    "comparator.png",
+    "compass.png",
+    "composter.png",
+    "conduit.png",
+    "cooked_beef.png",
+    "cooked_chicken.png",
+    "cooked_cod.png",
+    "cooked_mutton.png",
+    "cooked_porkchop.png",
+    "cooked_rabbit.png",
+    "cooked_salmon.png",
+    "cookie.png",
+    "copper_axe.png",
+    "copper_bars.png",
+    "copper_block.png",
+    "copper_boots.png",
+    "copper_bulb.png",
+    "copper_chain.png",
+    "copper_chest.png",
+    "copper_chestplate.png",
+    "copper_door.png",
+    "copper_golem_spawn_egg.png",
+    "copper_golem_statue.png",
+    "copper_grate.png",
+    "copper_helmet.png",
+    "copper_hoe.png",
+    "copper_horse_armor.png",
+    "copper_ingot.png",
+    "copper_lantern.png",
+    "copper_leggings.png",
+    "copper_nugget.png",
+    "copper_ore.png",
+    "copper_pickaxe.png",
+    "copper_shovel.png",
+    "copper_sword.png",
+    "copper_torch.png",
+    "copper_trapdoor.png",
+    "cornflower.png",
+    "cracked_deepslate_bricks.png",
+    "cracked_deepslate_tiles.png",
+    "cracked_nether_bricks.png",
+    "cracked_polished_blackstone_bricks.png",
+    "cracked_stone_bricks.png",
+    "crafter.png",
+    "crafting_table.png",
+    "creaking_heart.png",
+    "creaking_spawn_egg.png",
+    "creeper_banner_pattern.png",
+    "creeper_head.png",
+    "creeper_spawn_egg.png",
+    "crimson_button.png",
+    "crimson_door.png",
+    "crimson_fence.png",
+    "crimson_fence_gate.png",
+    "crimson_hanging_sign.png",
+    "crimson_hyphae.png",
+    "crimson_nylium.png",
+    "crimson_planks.png",
+    "crimson_pressure_plate.png",
+    "crimson_roots.png",
+    "crimson_shelf.png",
+    "crimson_sign.png",
+    "crimson_slab.png",
+    "crimson_stairs.png",
+    "crimson_stem.png",
+    "crimson_trapdoor.png",
+    "crossbow.png",
+    "crying_obsidian.png",
+    "cut_copper.png",
+    "cut_copper_slab.png",
+    "cut_copper_stairs.png",
+    "cut_red_sandstone.png",
+    "cut_red_sandstone_slab.png",
+    "cut_sandstone.png",
+    "cut_sandstone_slab.png",
+    "cyan_banner.png",
+    "cyan_bed.png",
+    "cyan_bundle.png",
+    "cyan_candle.png",
+    "cyan_carpet.png",
+    "cyan_concrete.png",
+    "cyan_concrete_powder.png",
+    "cyan_dye.png",
+    "cyan_glazed_terracotta.png",
+    "cyan_harness.png",
+    "cyan_shulker_box.png",
+    "cyan_stained_glass.png",
+    "cyan_stained_glass_pane.png",
+    "cyan_terracotta.png",
+    "cyan_wool.png",
+    "damaged_anvil.png",
+    "dandelion.png",
+    "danger_pottery_sherd.png",
+    "dark_oak_boat.png",
+    "dark_oak_button.png",
+    "dark_oak_chest_boat.png",
+    "dark_oak_door.png",
+    "dark_oak_fence.png",
+    "dark_oak_fence_gate.png",
+    "dark_oak_hanging_sign.png",
+    "dark_oak_leaves.png",
+    "dark_oak_log.png",
+    "dark_oak_planks.png",
+    "dark_oak_pressure_plate.png",
+    "dark_oak_sapling.png",
+    "dark_oak_shelf.png",
+    "dark_oak_sign.png",
+    "dark_oak_slab.png",
+    "dark_oak_stairs.png",
+    "dark_oak_trapdoor.png",
+    "dark_oak_wood.png",
+    "dark_prismarine.png",
+    "dark_prismarine_slab.png",
+    "dark_prismarine_stairs.png",
+    "daylight_detector.png",
+    "dead_brain_coral.png",
+    "dead_brain_coral_block.png",
+    "dead_brain_coral_fan.png",
+    "dead_bubble_coral.png",
+    "dead_bubble_coral_block.png",
+    "dead_bubble_coral_fan.png",
+    "dead_bush.png",
+    "dead_fire_coral.png",
+    "dead_fire_coral_block.png",
+    "dead_fire_coral_fan.png",
+    "dead_horn_coral.png",
+    "dead_horn_coral_block.png",
+    "dead_horn_coral_fan.png",
+    "dead_tube_coral.png",
+    "dead_tube_coral_block.png",
+    "dead_tube_coral_fan.png",
+    "debug_stick.png",
+    "decorated_pot.png",
+    "deepslate.png",
+    "deepslate_brick_slab.png",
+    "deepslate_brick_stairs.png",
+    "deepslate_brick_wall.png",
+    "deepslate_bricks.png",
+    "deepslate_coal_ore.png",
+    "deepslate_copper_ore.png",
+    "deepslate_diamond_ore.png",
+    "deepslate_emerald_ore.png",
+    "deepslate_gold_ore.png",
+    "deepslate_iron_ore.png",
+    "deepslate_lapis_ore.png",
+    "deepslate_redstone_ore.png",
+    "deepslate_tile_slab.png",
+    "deepslate_tile_stairs.png",
+    "deepslate_tile_wall.png",
+    "deepslate_tiles.png",
+    "detector_rail.png",
+    "diamond.png",
+    "diamond_axe.png",
+    "diamond_block.png",
+    "diamond_boots.png",
+    "diamond_chestplate.png",
+    "diamond_helmet.png",
+    "diamond_hoe.png",
+    "diamond_horse_armor.png",
+    "diamond_leggings.png",
+    "diamond_ore.png",
+    "diamond_pickaxe.png",
+    "diamond_shovel.png",
+    "diamond_sword.png",
+    "diorite.png",
+    "diorite_slab.png",
+    "diorite_stairs.png",
+    "diorite_wall.png",
+    "dirt.png",
+    "dirt_path.png",
+    "disc_fragment_5.png",
+    "dispenser.png",
+    "dolphin_spawn_egg.png",
+    "donkey_spawn_egg.png",
+    "dragon_breath.png",
+    "dragon_egg.png",
+    "dragon_head.png",
+    "dried_ghast.png",
+    "dried_kelp.png",
+    "dried_kelp_block.png",
+    "dripstone_block.png",
+    "dropper.png",
+    "drowned_spawn_egg.png",
+    "dune_armor_trim_smithing_template.png",
+    "echo_shard.png",
+    "egg.png",
+    "elder_guardian_spawn_egg.png",
+    "elytra.png",
+    "emerald.png",
+    "emerald_block.png",
+    "emerald_ore.png",
+    "empty.png",
+    "enchanted_book.png",
+    "enchanted_golden_apple.png",
+    "enchanting_table.png",
+    "end_crystal.png",
+    "end_portal_frame.png",
+    "end_rod.png",
+    "end_stone.png",
+    "end_stone_brick_slab.png",
+    "end_stone_brick_stairs.png",
+    "end_stone_brick_wall.png",
+    "end_stone_bricks.png",
+    "ender_chest.png",
+    "ender_dragon_spawn_egg.png",
+    "ender_eye.png",
+    "ender_pearl.png",
+    "enderman_spawn_egg.png",
+    "endermite_spawn_egg.png",
+    "evoker_spawn_egg.png",
+    "experience_bottle.png",
+    "explorer_pottery_sherd.png",
+    "exposed_chiseled_copper.png",
+    "exposed_copper.png",
+    "exposed_copper_bars.png",
+    "exposed_copper_bulb.png",
+    "exposed_copper_chain.png",
+    "exposed_copper_chest.png",
+    "exposed_copper_door.png",
+    "exposed_copper_golem_statue.png",
+    "exposed_copper_grate.png",
+    "exposed_copper_lantern.png",
+    "exposed_copper_trapdoor.png",
+    "exposed_cut_copper.png",
+    "exposed_cut_copper_slab.png",
+    "exposed_cut_copper_stairs.png",
+    "exposed_lightning_rod.png",
+    "eye_armor_trim_smithing_template.png",
+    "farmland.png",
+    "feather.png",
+    "fermented_spider_eye.png",
+    "fern.png",
+    "field_masoned_banner_pattern.png",
+    "filled_map.png",
+    "fire_charge.png",
+    "fire_coral.png",
+    "fire_coral_block.png",
+    "fire_coral_fan.png",
+    "firefly_bush.png",
+    "firework_rocket.png",
+    "firework_star.png",
+    "fishing_rod.png",
+    "fletching_table.png",
+    "flint.png",
+    "flint_and_steel.png",
+    "flow_armor_trim_smithing_template.png",
+    "flow_banner_pattern.png",
+    "flow_pottery_sherd.png",
+    "flower_banner_pattern.png",
+    "flower_pot.png",
+    "flowering_azalea.png",
+    "flowering_azalea_leaves.png",
+    "fox_spawn_egg.png",
+    "friend_pottery_sherd.png",
+    "frog_spawn_egg.png",
+    "frogspawn.png",
+    "furnace.png",
+    "furnace_minecart.png",
+    "ghast_spawn_egg.png",
+    "ghast_tear.png",
+    "gilded_blackstone.png",
+    "glass.png",
+    "glass_bottle.png",
+    "glass_pane.png",
+    "glistering_melon_slice.png",
+    "globe_banner_pattern.png",
+    "glow_berries.png",
+    "glow_ink_sac.png",
+    "glow_item_frame.png",
+    "glow_lichen.png",
+    "glow_squid_spawn_egg.png",
+    "glowstone.png",
+    "glowstone_dust.png",
+    "goat_horn.png",
+    "goat_spawn_egg.png",
+    "gold_block.png",
+    "gold_ingot.png",
+    "gold_nugget.png",
+    "gold_ore.png",
+    "golden_apple.png",
+    "golden_axe.png",
+    "golden_boots.png",
+    "golden_carrot.png",
+    "golden_chestplate.png",
+    "golden_helmet.png",
+    "golden_hoe.png",
+    "golden_horse_armor.png",
+    "golden_leggings.png",
+    "golden_pickaxe.png",
+    "golden_shovel.png",
+    "golden_sword.png",
+    "granite.png",
+    "granite_slab.png",
+    "granite_stairs.png",
+    "granite_wall.png",
+    "grass_block.png",
+    "gravel.png",
+    "gray_banner.png",
+    "gray_bed.png",
+    "gray_bundle.png",
+    "gray_candle.png",
+    "gray_carpet.png",
+    "gray_concrete.png",
+    "gray_concrete_powder.png",
+    "gray_dye.png",
+    "gray_glazed_terracotta.png",
+    "gray_harness.png",
+    "gray_shulker_box.png",
+    "gray_stained_glass.png",
+    "gray_stained_glass_pane.png",
+    "gray_terracotta.png",
+    "gray_wool.png",
+    "green_banner.png",
+    "green_bed.png",
+    "green_bundle.png",
+    "green_candle.png",
+    "green_carpet.png",
+    "green_concrete.png",
+    "green_concrete_powder.png",
+    "green_dye.png",
+    "green_glazed_terracotta.png",
+    "green_harness.png",
+    "green_shulker_box.png",
+    "green_stained_glass.png",
+    "green_stained_glass_pane.png",
+    "green_terracotta.png",
+    "green_wool.png",
+    "grindstone.png",
+    "guardian_spawn_egg.png",
+    "gunpowder.png",
+    "guster_banner_pattern.png",
+    "guster_pottery_sherd.png",
+    "hanging_roots.png",
+    "happy_ghast_spawn_egg.png",
+    "hay_block.png",
+    "heart_of_the_sea.png",
+    "heart_pottery_sherd.png",
+    "heartbreak_pottery_sherd.png",
+    "heavy_core.png",
+    "heavy_weighted_pressure_plate.png",
+    "hoglin_spawn_egg.png",
+    "honey_block.png",
+    "honey_bottle.png",
+    "honeycomb.png",
+    "honeycomb_block.png",
+    "hopper.png",
+    "hopper_minecart.png",
+    "horn_coral.png",
+    "horn_coral_block.png",
+    "horn_coral_fan.png",
+    "horse_spawn_egg.png",
+    "host_armor_trim_smithing_template.png",
+    "howl_pottery_sherd.png",
+    "ice.png",
+    "infested_chiseled_stone_bricks.png",
+    "infested_cobblestone.png",
+    "infested_cracked_stone_bricks.png",
+    "infested_deepslate.png",
+    "infested_mossy_stone_bricks.png",
+    "infested_stone.png",
+    "infested_stone_bricks.png",
+    "ink_sac.png",
+    "iron_axe.png",
+    "iron_bars.png",
+    "iron_block.png",
+    "iron_boots.png",
+    "iron_chain.png",
+    "iron_chestplate.png",
+    "iron_door.png",
+    "iron_golem_spawn_egg.png",
+    "iron_helmet.png",
+    "iron_hoe.png",
+    "iron_horse_armor.png",
+    "iron_ingot.png",
+    "iron_leggings.png",
+    "iron_nugget.png",
+    "iron_ore.png",
+    "iron_pickaxe.png",
+    "iron_shovel.png",
+    "iron_sword.png",
+    "iron_trapdoor.png",
+    "item_frame.png",
+    "items.json",
+    "jack_o_lantern.png",
+    "jigsaw.png",
+    "jukebox.png",
+    "jungle_boat.png",
+    "jungle_button.png",
+    "jungle_chest_boat.png",
+    "jungle_door.png",
+    "jungle_fence.png",
+    "jungle_fence_gate.png",
+    "jungle_hanging_sign.png",
+    "jungle_leaves.png",
+    "jungle_log.png",
+    "jungle_planks.png",
+    "jungle_pressure_plate.png",
+    "jungle_sapling.png",
+    "jungle_shelf.png",
+    "jungle_sign.png",
+    "jungle_slab.png",
+    "jungle_stairs.png",
+    "jungle_trapdoor.png",
+    "jungle_wood.png",
+    "kelp.png",
+    "knowledge_book.png",
+    "ladder.png",
+    "lantern.png",
+    "lapis_block.png",
+    "lapis_lazuli.png",
+    "lapis_ore.png",
+    "large_amethyst_bud.png",
+    "large_fern.png",
+    "lava_bucket.png",
+    "lead.png",
+    "leaf_litter.png",
+    "leather.png",
+    "leather_boots.png",
+    "leather_chestplate.png",
+    "leather_helmet.png",
+    "leather_horse_armor.png",
+    "leather_leggings.png",
+    "lectern.png",
+    "lever.png",
+    "light.png",
+    "light_blue_banner.png",
+    "light_blue_bed.png",
+    "light_blue_bundle.png",
+    "light_blue_candle.png",
+    "light_blue_carpet.png",
+    "light_blue_concrete.png",
+    "light_blue_concrete_powder.png",
+    "light_blue_dye.png",
+    "light_blue_glazed_terracotta.png",
+    "light_blue_harness.png",
+    "light_blue_shulker_box.png",
+    "light_blue_stained_glass.png",
+    "light_blue_stained_glass_pane.png",
+    "light_blue_terracotta.png",
+    "light_blue_wool.png",
+    "light_gray_banner.png",
+    "light_gray_bed.png",
+    "light_gray_bundle.png",
+    "light_gray_candle.png",
+    "light_gray_carpet.png",
+    "light_gray_concrete.png",
+    "light_gray_concrete_powder.png",
+    "light_gray_dye.png",
+    "light_gray_glazed_terracotta.png",
+    "light_gray_harness.png",
+    "light_gray_shulker_box.png",
+    "light_gray_stained_glass.png",
+    "light_gray_stained_glass_pane.png",
+    "light_gray_terracotta.png",
+    "light_gray_wool.png",
+    "light_weighted_pressure_plate.png",
+    "lightning_rod.png",
+    "lilac.png",
+    "lily_of_the_valley.png",
+    "lily_pad.png",
+    "lime_banner.png",
+    "lime_bed.png",
+    "lime_bundle.png",
+    "lime_candle.png",
+    "lime_carpet.png",
+    "lime_concrete.png",
+    "lime_concrete_powder.png",
+    "lime_dye.png",
+    "lime_glazed_terracotta.png",
+    "lime_harness.png",
+    "lime_shulker_box.png",
+    "lime_stained_glass.png",
+    "lime_stained_glass_pane.png",
+    "lime_terracotta.png",
+    "lime_wool.png",
+    "lingering_potion.png",
+    "llama_spawn_egg.png",
+    "lodestone.png",
+    "loom.png",
+    "mace.png",
+    "magenta_banner.png",
+    "magenta_bed.png",
+    "magenta_bundle.png",
+    "magenta_candle.png",
+    "magenta_carpet.png",
+    "magenta_concrete.png",
+    "magenta_concrete_powder.png",
+    "magenta_dye.png",
+    "magenta_glazed_terracotta.png",
+    "magenta_harness.png",
+    "magenta_shulker_box.png",
+    "magenta_stained_glass.png",
+    "magenta_stained_glass_pane.png",
+    "magenta_terracotta.png",
+    "magenta_wool.png",
+    "magma_block.png",
+    "magma_cream.png",
+    "magma_cube_spawn_egg.png",
+    "mangrove_boat.png",
+    "mangrove_button.png",
+    "mangrove_chest_boat.png",
+    "mangrove_door.png",
+    "mangrove_fence.png",
+    "mangrove_fence_gate.png",
+    "mangrove_hanging_sign.png",
+    "mangrove_leaves.png",
+    "mangrove_log.png",
+    "mangrove_planks.png",
+    "mangrove_pressure_plate.png",
+    "mangrove_propagule.png",
+    "mangrove_roots.png",
+    "mangrove_shelf.png",
+    "mangrove_sign.png",
+    "mangrove_slab.png",
+    "mangrove_stairs.png",
+    "mangrove_trapdoor.png",
+    "mangrove_wood.png",
+    "map.png",
+    "medium_amethyst_bud.png",
+    "melon.png",
+    "melon_seeds.png",
+    "melon_slice.png",
+    "milk_bucket.png",
+    "minecart.png",
+    "miner_pottery_sherd.png",
+    "mojang_banner_pattern.png",
+    "mooshroom_spawn_egg.png",
+    "moss_block.png",
+    "moss_carpet.png",
+    "mossy_cobblestone.png",
+    "mossy_cobblestone_slab.png",
+    "mossy_cobblestone_stairs.png",
+    "mossy_cobblestone_wall.png",
+    "mossy_stone_brick_slab.png",
+    "mossy_stone_brick_stairs.png",
+    "mossy_stone_brick_wall.png",
+    "mossy_stone_bricks.png",
+    "mourner_pottery_sherd.png",
+    "mud.png",
+    "mud_brick_slab.png",
+    "mud_brick_stairs.png",
+    "mud_brick_wall.png",
+    "mud_bricks.png",
+    "muddy_mangrove_roots.png",
+    "mule_spawn_egg.png",
+    "mushroom_stem.png",
+    "mushroom_stew.png",
+    "music_disc_11.png",
+    "music_disc_13.png",
+    "music_disc_5.png",
+    "music_disc_blocks.png",
+    "music_disc_cat.png",
+    "music_disc_chirp.png",
+    "music_disc_creator.png",
+    "music_disc_creator_music_box.png",
+    "music_disc_far.png",
+    "music_disc_lava_chicken.png",
+    "music_disc_mall.png",
+    "music_disc_mellohi.png",
+    "music_disc_otherside.png",
+    "music_disc_pigstep.png",
+    "music_disc_precipice.png",
+    "music_disc_relic.png",
+    "music_disc_stal.png",
+    "music_disc_strad.png",
+    "music_disc_tears.png",
+    "music_disc_wait.png",
+    "music_disc_ward.png",
+    "mutton.png",
+    "mycelium.png",
+    "name_tag.png",
+    "nautilus_shell.png",
+    "nether_brick.png",
+    "nether_brick_fence.png",
+    "nether_brick_slab.png",
+    "nether_brick_stairs.png",
+    "nether_brick_wall.png",
+    "nether_bricks.png",
+    "nether_gold_ore.png",
+    "nether_quartz_ore.png",
+    "nether_sprouts.png",
+    "nether_star.png",
+    "nether_wart.png",
+    "nether_wart_block.png",
+    "netherite_axe.png",
+    "netherite_block.png",
+    "netherite_boots.png",
+    "netherite_chestplate.png",
+    "netherite_helmet.png",
+    "netherite_hoe.png",
+    "netherite_ingot.png",
+    "netherite_leggings.png",
+    "netherite_pickaxe.png",
+    "netherite_scrap.png",
+    "netherite_shovel.png",
+    "netherite_sword.png",
+    "netherite_upgrade_smithing_template.png",
+    "netherrack.png",
+    "note_block.png",
+    "oak_boat.png",
+    "oak_button.png",
+    "oak_chest_boat.png",
+    "oak_door.png",
+    "oak_fence.png",
+    "oak_fence_gate.png",
+    "oak_hanging_sign.png",
+    "oak_leaves.png",
+    "oak_log.png",
+    "oak_planks.png",
+    "oak_pressure_plate.png",
+    "oak_sapling.png",
+    "oak_shelf.png",
+    "oak_sign.png",
+    "oak_slab.png",
+    "oak_stairs.png",
+    "oak_trapdoor.png",
+    "oak_wood.png",
+    "observer.png",
+    "obsidian.png",
+    "ocelot_spawn_egg.png",
+    "ochre_froglight.png",
+    "ominous_bottle.png",
+    "ominous_trial_key.png",
+    "open_eyeblossom.png",
+    "orange_banner.png",
+    "orange_bed.png",
+    "orange_bundle.png",
+    "orange_candle.png",
+    "orange_carpet.png",
+    "orange_concrete.png",
+    "orange_concrete_powder.png",
+    "orange_dye.png",
+    "orange_glazed_terracotta.png",
+    "orange_harness.png",
+    "orange_shulker_box.png",
+    "orange_stained_glass.png",
+    "orange_stained_glass_pane.png",
+    "orange_terracotta.png",
+    "orange_tulip.png",
+    "orange_wool.png",
+    "oxeye_daisy.png",
+    "oxidized_chiseled_copper.png",
+    "oxidized_copper.png",
+    "oxidized_copper_bars.png",
+    "oxidized_copper_bulb.png",
+    "oxidized_copper_chain.png",
+    "oxidized_copper_chest.png",
+    "oxidized_copper_door.png",
+    "oxidized_copper_golem_statue.png",
+    "oxidized_copper_grate.png",
+    "oxidized_copper_lantern.png",
+    "oxidized_copper_trapdoor.png",
+    "oxidized_cut_copper.png",
+    "oxidized_cut_copper_slab.png",
+    "oxidized_cut_copper_stairs.png",
+    "oxidized_lightning_rod.png",
+    "packed_ice.png",
+    "packed_mud.png",
+    "painting.png",
+    "pale_hanging_moss.png",
+    "pale_moss_block.png",
+    "pale_moss_carpet.png",
+    "pale_oak_boat.png",
+    "pale_oak_button.png",
+    "pale_oak_chest_boat.png",
+    "pale_oak_door.png",
+    "pale_oak_fence.png",
+    "pale_oak_fence_gate.png",
+    "pale_oak_hanging_sign.png",
+    "pale_oak_leaves.png",
+    "pale_oak_log.png",
+    "pale_oak_planks.png",
+    "pale_oak_pressure_plate.png",
+    "pale_oak_sapling.png",
+    "pale_oak_shelf.png",
+    "pale_oak_sign.png",
+    "pale_oak_slab.png",
+    "pale_oak_stairs.png",
+    "pale_oak_trapdoor.png",
+    "pale_oak_wood.png",
+    "panda_spawn_egg.png",
+    "paper.png",
+    "parrot_spawn_egg.png",
+    "pearlescent_froglight.png",
+    "peony.png",
+    "petrified_oak_slab.png",
+    "phantom_membrane.png",
+    "phantom_spawn_egg.png",
+    "pig_spawn_egg.png",
+    "piglin_banner_pattern.png",
+    "piglin_brute_spawn_egg.png",
+    "piglin_head.png",
+    "piglin_spawn_egg.png",
+    "pillager_spawn_egg.png",
+    "pink_banner.png",
+    "pink_bed.png",
+    "pink_bundle.png",
+    "pink_candle.png",
+    "pink_carpet.png",
+    "pink_concrete.png",
+    "pink_concrete_powder.png",
+    "pink_dye.png",
+    "pink_glazed_terracotta.png",
+    "pink_harness.png",
+    "pink_petals.png",
+    "pink_shulker_box.png",
+    "pink_stained_glass.png",
+    "pink_stained_glass_pane.png",
+    "pink_terracotta.png",
+    "pink_tulip.png",
+    "pink_wool.png",
+    "piston.png",
+    "pitcher_plant.png",
+    "pitcher_pod.png",
+    "player_head.png",
+    "plenty_pottery_sherd.png",
+    "podzol.png",
+    "pointed_dripstone.png",
+    "poisonous_potato.png",
+    "polar_bear_spawn_egg.png",
+    "polished_andesite.png",
+    "polished_andesite_slab.png",
+    "polished_andesite_stairs.png",
+    "polished_basalt.png",
+    "polished_blackstone.png",
+    "polished_blackstone_brick_slab.png",
+    "polished_blackstone_brick_stairs.png",
+    "polished_blackstone_brick_wall.png",
+    "polished_blackstone_bricks.png",
+    "polished_blackstone_button.png",
+    "polished_blackstone_pressure_plate.png",
+    "polished_blackstone_slab.png",
+    "polished_blackstone_stairs.png",
+    "polished_blackstone_wall.png",
+    "polished_deepslate.png",
+    "polished_deepslate_slab.png",
+    "polished_deepslate_stairs.png",
+    "polished_deepslate_wall.png",
+    "polished_diorite.png",
+    "polished_diorite_slab.png",
+    "polished_diorite_stairs.png",
+    "polished_granite.png",
+    "polished_granite_slab.png",
+    "polished_granite_stairs.png",
+    "polished_tuff.png",
+    "polished_tuff_slab.png",
+    "polished_tuff_stairs.png",
+    "polished_tuff_wall.png",
+    "popped_chorus_fruit.png",
+    "poppy.png",
+    "porkchop.png",
+    "potato.png",
+    "potion.png",
+    "powder_snow_bucket.png",
+    "powered_rail.png",
+    "prismarine.png",
+    "prismarine_brick_slab.png",
+    "prismarine_brick_stairs.png",
+    "prismarine_bricks.png",
+    "prismarine_crystals.png",
+    "prismarine_shard.png",
+    "prismarine_slab.png",
+    "prismarine_stairs.png",
+    "prismarine_wall.png",
+    "prize_pottery_sherd.png",
+    "pufferfish.png",
+    "pufferfish_bucket.png",
+    "pufferfish_spawn_egg.png",
+    "pumpkin.png",
+    "pumpkin_pie.png",
+    "pumpkin_seeds.png",
+    "purple_banner.png",
+    "purple_bed.png",
+    "purple_bundle.png",
+    "purple_candle.png",
+    "purple_carpet.png",
+    "purple_concrete.png",
+    "purple_concrete_powder.png",
+    "purple_dye.png",
+    "purple_glazed_terracotta.png",
+    "purple_harness.png",
+    "purple_shulker_box.png",
+    "purple_stained_glass.png",
+    "purple_stained_glass_pane.png",
+    "purple_terracotta.png",
+    "purple_wool.png",
+    "purpur_block.png",
+    "purpur_pillar.png",
+    "purpur_slab.png",
+    "purpur_stairs.png",
+    "quartz.png",
+    "quartz_block.png",
+    "quartz_bricks.png",
+    "quartz_pillar.png",
+    "quartz_slab.png",
+    "quartz_stairs.png",
+    "rabbit.png",
+    "rabbit_foot.png",
+    "rabbit_hide.png",
+    "rabbit_spawn_egg.png",
+    "rabbit_stew.png",
+    "rail.png",
+    "raiser_armor_trim_smithing_template.png",
+    "ravager_spawn_egg.png",
+    "raw_copper.png",
+    "raw_copper_block.png",
+    "raw_gold.png",
+    "raw_gold_block.png",
+    "raw_iron.png",
+    "raw_iron_block.png",
+    "recovery_compass.png",
+    "red_banner.png",
+    "red_bed.png",
+    "red_bundle.png",
+    "red_candle.png",
+    "red_carpet.png",
+    "red_concrete.png",
+    "red_concrete_powder.png",
+    "red_dye.png",
+    "red_glazed_terracotta.png",
+    "red_harness.png",
+    "red_mushroom.png",
+    "red_mushroom_block.png",
+    "red_nether_brick_slab.png",
+    "red_nether_brick_stairs.png",
+    "red_nether_brick_wall.png",
+    "red_nether_bricks.png",
+    "red_sand.png",
+    "red_sandstone.png",
+    "red_sandstone_slab.png",
+    "red_sandstone_stairs.png",
+    "red_sandstone_wall.png",
+    "red_shulker_box.png",
+    "red_stained_glass.png",
+    "red_stained_glass_pane.png",
+    "red_terracotta.png",
+    "red_tulip.png",
+    "red_wool.png",
+    "redstone.png",
+    "redstone_block.png",
+    "redstone_lamp.png",
+    "redstone_ore.png",
+    "redstone_torch.png",
+    "reinforced_deepslate.png",
+    "repeater.png",
+    "repeating_command_block.png",
+    "resin_block.png",
+    "resin_brick.png",
+    "resin_brick_slab.png",
+    "resin_brick_stairs.png",
+    "resin_brick_wall.png",
+    "resin_bricks.png",
+    "resin_clump.png",
+    "respawn_anchor.png",
+    "rib_armor_trim_smithing_template.png",
+    "rooted_dirt.png",
+    "rose_bush.png",
+    "rotten_flesh.png",
+    "saddle.png",
+    "salmon.png",
+    "salmon_bucket.png",
+    "salmon_spawn_egg.png",
+    "sand.png",
+    "sandstone.png",
+    "sandstone_slab.png",
+    "sandstone_stairs.png",
+    "sandstone_wall.png",
+    "scaffolding.png",
+    "scrape_pottery_sherd.png",
+    "sculk.png",
+    "sculk_catalyst.png",
+    "sculk_sensor.png",
+    "sculk_shrieker.png",
+    "sculk_vein.png",
+    "sea_lantern.png",
+    "sea_pickle.png",
+    "seagrass.png",
+    "sentry_armor_trim_smithing_template.png",
+    "shaper_armor_trim_smithing_template.png",
+    "sheaf_pottery_sherd.png",
+    "shears.png",
+    "sheep_spawn_egg.png",
+    "shelter_pottery_sherd.png",
+    "shield.png",
+    "short_dry_grass.png",
+    "short_grass.png",
+    "shroomlight.png",
+    "shulker_box.png",
+    "shulker_shell.png",
+    "shulker_spawn_egg.png",
+    "silence_armor_trim_smithing_template.png",
+    "silverfish_spawn_egg.png",
+    "skeleton_horse_spawn_egg.png",
+    "skeleton_skull.png",
+    "skeleton_spawn_egg.png",
+    "skull_banner_pattern.png",
+    "skull_pottery_sherd.png",
+    "slime_ball.png",
+    "slime_block.png",
+    "slime_spawn_egg.png",
+    "small_amethyst_bud.png",
+    "small_dripleaf.png",
+    "smithing_table.png",
+    "smoker.png",
+    "smooth_basalt.png",
+    "smooth_quartz.png",
+    "smooth_quartz_slab.png",
+    "smooth_quartz_stairs.png",
+    "smooth_red_sandstone.png",
+    "smooth_red_sandstone_slab.png",
+    "smooth_red_sandstone_stairs.png",
+    "smooth_sandstone.png",
+    "smooth_sandstone_slab.png",
+    "smooth_sandstone_stairs.png",
+    "smooth_stone.png",
+    "smooth_stone_slab.png",
+    "sniffer_egg.png",
+    "sniffer_spawn_egg.png",
+    "snort_pottery_sherd.png",
+    "snout_armor_trim_smithing_template.png",
+    "snow.png",
+    "snow_block.png",
+    "snow_golem_spawn_egg.png",
+    "snowball.png",
+    "soul_campfire.png",
+    "soul_lantern.png",
+    "soul_sand.png",
+    "soul_soil.png",
+    "soul_torch.png",
+    "spawner.png",
+    "spectral_arrow.png",
+    "spider_eye.png",
+    "spider_spawn_egg.png",
+    "spire_armor_trim_smithing_template.png",
+    "splash_potion.png",
+    "sponge.png",
+    "spore_blossom.png",
+    "spruce_boat.png",
+    "spruce_button.png",
+    "spruce_chest_boat.png",
+    "spruce_door.png",
+    "spruce_fence.png",
+    "spruce_fence_gate.png",
+    "spruce_hanging_sign.png",
+    "spruce_leaves.png",
+    "spruce_log.png",
+    "spruce_planks.png",
+    "spruce_pressure_plate.png",
+    "spruce_sapling.png",
+    "spruce_shelf.png",
+    "spruce_sign.png",
+    "spruce_slab.png",
+    "spruce_stairs.png",
+    "spruce_trapdoor.png",
+    "spruce_wood.png",
+    "spyglass.png",
+    "squid_spawn_egg.png",
+    "stick.png",
+    "sticky_piston.png",
+    "stone.png",
+    "stone_axe.png",
+    "stone_brick_slab.png",
+    "stone_brick_stairs.png",
+    "stone_brick_wall.png",
+    "stone_bricks.png",
+    "stone_button.png",
+    "stone_hoe.png",
+    "stone_pickaxe.png",
+    "stone_pressure_plate.png",
+    "stone_shovel.png",
+    "stone_slab.png",
+    "stone_stairs.png",
+    "stone_sword.png",
+    "stonecutter.png",
+    "stray_spawn_egg.png",
+    "strider_spawn_egg.png",
+    "string.png",
+    "stripped_acacia_log.png",
+    "stripped_acacia_wood.png",
+    "stripped_bamboo_block.png",
+    "stripped_birch_log.png",
+    "stripped_birch_wood.png",
+    "stripped_cherry_log.png",
+    "stripped_cherry_wood.png",
+    "stripped_crimson_hyphae.png",
+    "stripped_crimson_stem.png",
+    "stripped_dark_oak_log.png",
+    "stripped_dark_oak_wood.png",
+    "stripped_jungle_log.png",
+    "stripped_jungle_wood.png",
+    "stripped_mangrove_log.png",
+    "stripped_mangrove_wood.png",
+    "stripped_oak_log.png",
+    "stripped_oak_wood.png",
+    "stripped_pale_oak_log.png",
+    "stripped_pale_oak_wood.png",
+    "stripped_spruce_log.png",
+    "stripped_spruce_wood.png",
+    "stripped_warped_hyphae.png",
+    "stripped_warped_stem.png",
+    "structure_block.png",
+    "structure_void.png",
+    "sugar.png",
+    "sugar_cane.png",
+    "sunflower.png",
+    "suspicious_gravel.png",
+    "suspicious_sand.png",
+    "suspicious_stew.png",
+    "sweet_berries.png",
+    "tadpole_bucket.png",
+    "tadpole_spawn_egg.png",
+    "tall_dry_grass.png",
+    "tall_grass.png",
+    "target.png",
+    "terracotta.png",
+    "test_block.png",
+    "test_instance_block.png",
+    "tide_armor_trim_smithing_template.png",
+    "tinted_glass.png",
+    "tipped_arrow.png",
+    "tnt.png",
+    "tnt_minecart.png",
+    "torch.png",
+    "torchflower.png",
+    "torchflower_seeds.png",
+    "totem_of_undying.png",
+    "trader_llama_spawn_egg.png",
+    "trapped_chest.png",
+    "trial_key.png",
+    "trial_spawner.png",
+    "trident.png",
+    "tripwire_hook.png",
+    "tropical_fish.png",
+    "tropical_fish_bucket.png",
+    "tropical_fish_spawn_egg.png",
+    "tube_coral.png",
+    "tube_coral_block.png",
+    "tube_coral_fan.png",
+    "tuff.png",
+    "tuff_brick_slab.png",
+    "tuff_brick_stairs.png",
+    "tuff_brick_wall.png",
+    "tuff_bricks.png",
+    "tuff_slab.png",
+    "tuff_stairs.png",
+    "tuff_wall.png",
+    "turtle_egg.png",
+    "turtle_helmet.png",
+    "turtle_scute.png",
+    "turtle_spawn_egg.png",
+    "twisting_vines.png",
+    "vault.png",
+    "verdant_froglight.png",
+    "vex_armor_trim_smithing_template.png",
+    "vex_spawn_egg.png",
+    "villager_spawn_egg.png",
+    "vindicator_spawn_egg.png",
+    "vine.png",
+    "wandering_trader_spawn_egg.png",
+    "ward_armor_trim_smithing_template.png",
+    "warden_spawn_egg.png",
+    "warped_button.png",
+    "warped_door.png",
+    "warped_fence.png",
+    "warped_fence_gate.png",
+    "warped_fungus.png",
+    "warped_fungus_on_a_stick.png",
+    "warped_hanging_sign.png",
+    "warped_hyphae.png",
+    "warped_nylium.png",
+    "warped_planks.png",
+    "warped_pressure_plate.png",
+    "warped_roots.png",
+    "warped_shelf.png",
+    "warped_sign.png",
+    "warped_slab.png",
+    "warped_stairs.png",
+    "warped_stem.png",
+    "warped_trapdoor.png",
+    "warped_wart_block.png",
+    "water_bucket.png",
+    "waxed_chiseled_copper.png",
+    "waxed_copper_bars.png",
+    "waxed_copper_block.png",
+    "waxed_copper_bulb.png",
+    "waxed_copper_chain.png",
+    "waxed_copper_chest.png",
+    "waxed_copper_door.png",
+    "waxed_copper_golem_statue.png",
+    "waxed_copper_grate.png",
+    "waxed_copper_lantern.png",
+    "waxed_copper_trapdoor.png",
+    "waxed_exposed_chiseled_copper.png",
+    "waxed_exposed_copper.png",
+    "waxed_exposed_copper_bars.png",
+    "waxed_exposed_copper_bulb.png",
+    "waxed_exposed_copper_chain.png",
+    "waxed_exposed_copper_chest.png",
+    "waxed_exposed_copper_door.png",
+    "waxed_exposed_copper_golem_statue.png",
+    "waxed_exposed_copper_grate.png",
+    "waxed_exposed_copper_lantern.png",
+    "waxed_exposed_copper_trapdoor.png",
+    "waxed_exposed_cut_copper.png",
+    "waxed_exposed_cut_copper_slab.png",
+    "waxed_exposed_cut_copper_stairs.png",
+    "waxed_exposed_lightning_rod.png",
+    "waxed_lightning_rod.png",
+    "waxed_oxidized_chiseled_copper.png",
+    "waxed_oxidized_copper.png",
+    "waxed_oxidized_copper_bars.png",
+    "waxed_oxidized_copper_bulb.png",
+    "waxed_oxidized_copper_chain.png",
+    "waxed_oxidized_copper_chest.png",
+    "waxed_oxidized_copper_door.png",
+    "waxed_oxidized_copper_golem_statue.png",
+    "waxed_oxidized_copper_grate.png",
+    "waxed_oxidized_copper_lantern.png",
+    "waxed_oxidized_copper_trapdoor.png",
+    "waxed_oxidized_cut_copper.png",
+    "waxed_oxidized_cut_copper_slab.png",
+    "waxed_oxidized_cut_copper_stairs.png",
+    "waxed_oxidized_lightning_rod.png",
+    "waxed_weathered_chiseled_copper.png",
+    "waxed_weathered_copper.png",
+    "waxed_weathered_copper_bars.png",
+    "waxed_weathered_copper_bulb.png",
+    "waxed_weathered_copper_chain.png",
+    "waxed_weathered_copper_chest.png",
+    "waxed_weathered_copper_door.png",
+    "waxed_weathered_copper_golem_statue.png",
+    "waxed_weathered_copper_grate.png",
+    "waxed_weathered_copper_lantern.png",
+    "waxed_weathered_copper_trapdoor.png",
+    "waxed_weathered_cut_copper.png",
+    "waxed_weathered_cut_copper_slab.png",
+    "waxed_weathered_cut_copper_stairs.png",
+    "waxed_weathered_lightning_rod.png",
+    "weathered_chiseled_copper.png",
+    "weathered_copper.png",
+    "weathered_copper_bars.png",
+    "weathered_copper_bulb.png",
+    "weathered_copper_chain.png",
+    "weathered_copper_chest.png",
+    "weathered_copper_door.png",
+    "weathered_copper_golem_statue.png",
+    "weathered_copper_grate.png",
+    "weathered_copper_lantern.png",
+    "weathered_copper_trapdoor.png",
+    "weathered_cut_copper.png",
+    "weathered_cut_copper_slab.png",
+    "weathered_cut_copper_stairs.png",
+    "weathered_lightning_rod.png",
+    "weeping_vines.png",
+    "wet_sponge.png",
+    "wheat.png",
+    "wheat_seeds.png",
+    "white_banner.png",
+    "white_bed.png",
+    "white_bundle.png",
+    "white_candle.png",
+    "white_carpet.png",
+    "white_concrete.png",
+    "white_concrete_powder.png",
+    "white_dye.png",
+    "white_glazed_terracotta.png",
+    "white_harness.png",
+    "white_shulker_box.png",
+    "white_stained_glass.png",
+    "white_stained_glass_pane.png",
+    "white_terracotta.png",
+    "white_tulip.png",
+    "white_wool.png",
+    "wild_armor_trim_smithing_template.png",
+    "wildflowers.png",
+    "wind_charge.png",
+    "witch_spawn_egg.png",
+    "wither_rose.png",
+    "wither_skeleton_skull.png",
+    "wither_skeleton_spawn_egg.png",
+    "wither_spawn_egg.png",
+    "wolf_armor.png",
+    "wolf_spawn_egg.png",
+    "wooden_axe.png",
+    "wooden_hoe.png",
+    "wooden_pickaxe.png",
+    "wooden_shovel.png",
+    "wooden_sword.png",
+    "writable_book.png",
+    "written_book.png",
+    "yellow_banner.png",
+    "yellow_bed.png",
+    "yellow_bundle.png",
+    "yellow_candle.png",
+    "yellow_carpet.png",
+    "yellow_concrete.png",
+    "yellow_concrete_powder.png",
+    "yellow_dye.png",
+    "yellow_glazed_terracotta.png",
+    "yellow_harness.png",
+    "yellow_shulker_box.png",
+    "yellow_stained_glass.png",
+    "yellow_stained_glass_pane.png",
+    "yellow_terracotta.png",
+    "yellow_tulip.png",
+    "yellow_wool.png",
+    "zoglin_spawn_egg.png",
+    "zombie_head.png",
+    "zombie_horse_spawn_egg.png",
+    "zombie_spawn_egg.png",
+    "zombie_villager_spawn_egg.png",
+    "zombified_piglin_spawn_egg.png"
+
+
+            ];
+
+            items = fallbackFiles.map(filename => ({
+                filename: filename,
+                label: parseItemLabel(filename),
+                path: 'assets/item/' + filename
+            }));
+
+            isItemsLoaded = true;
+            initializeDefaultItem();
+            renderMotionInfo();
+            renderItemList('');
+            updateSummary();
+            enableCopyButton();
+        }
+
+        // ============================================================
+        // 6.  INITIALIZE DEFAULT ITEM
+        // ============================================================
+
+        function initializeDefaultItem() {
+            selectedItem = items.find(item => item.filename === 'book.png') || items[0];
+            if (selectedItem) {
+                document.getElementById('selectedIcon').src = selectedItem.path;
+                document.getElementById('selectedLabel').textContent = selectedItem.label;
+            }
+        }
+
+        // ============================================================
+        // 7.  RENDER FUNCTIONS
+        // ============================================================
+
+        // Render motion info
+        function renderMotionInfo() {
+            const tierConfig = {
+                free: { label: 'FREE', cls: 'free' },
+                basic: { label: 'BASIC', cls: 'basic' },
+                plus: { label: 'PLUS', cls: 'plus' },
+                premium: { label: 'PREMIUM', cls: 'premium' }
+            };
+
+            const tier = tierConfig[motionConfig.tier] || tierConfig.basic;
+            const priceStr = formatPrice(motionConfig.price);
+
+            const container = document.getElementById('motionInfo');
+            container.innerHTML = `
+                <h1>${motionConfig.name}</h1>
+                <div class="tags">
+                    ${motionConfig.tags.map(t => `<span>${t}</span>`).join('')}
+                </div>
+                <div class="price-row">
+                    <span class="price">${priceStr}</span>
+                    <span class="badge-tier ${motionConfig.tier}">${tier.label}</span>
+                </div>
+                <p class="desc">${motionConfig.description}</p>
+            `;
+        }
+
+        // Render item list di dropdown
+        function renderItemList(filter = '') {
+            const container = document.getElementById('itemList');
+            const search = filter.toLowerCase().replace(/_/g, ' ').trim();
+
+            let filtered = items;
+            if (search) {
+                filtered = items.filter(item =>
+                    item.label.toLowerCase().includes(search) ||
+                    item.filename.toLowerCase().includes(search.replace(/ /g, '_'))
+                );
+            }
+
+            if (!isItemsLoaded || filtered.length === 0) {
+                container.innerHTML = `<div class="no-result">${!isItemsLoaded ? 'Memuat item...' : 'Tidak ada item ditemukan'}</div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(item => `
+                <div class="item-option ${item.filename === selectedItem.filename ? 'selected' : ''}" 
+                     data-filename="${item.filename}">
+                    <img class="item-icon" src="${item.path}" alt="${item.label}" />
+                    <span class="item-name">${item.label}</span>
+                </div>
+            `).join('');
+
+            container.querySelectorAll('.item-option').forEach(el => {
+                el.addEventListener('click', function() {
+                    const filename = this.dataset.filename;
+                    const item = items.find(i => i.filename === filename);
+                    if (item) selectItem(item);
+                });
+            });
+        }
+
+        // Select item
+        function selectItem(item) {
+            if (!item) return;
+            selectedItem = item;
+            document.getElementById('selectedIcon').src = item.path;
+            document.getElementById('selectedLabel').textContent = item.label;
+            document.getElementById('pickerInput').classList.remove('active');
+            document.getElementById('pickerDropdown').classList.remove('open');
+            document.getElementById('pickerArrow').classList.remove('open');
+            resetCopiedState();
+            updateSummary();
+        }
+
+        // ============================================================
+        // 8.  UPDATE SUMMARY
+        // ============================================================
+
+        function updateSummary() {
+            const tierConfig = {
+                free: { label: 'FREE' },
+                basic: { label: 'BASIC' },
+                plus: { label: 'PLUS' },
+                premium: { label: 'PREMIUM' }
+            };
+            const tier = tierConfig[motionConfig.tier] || tierConfig.basic;
+            const priceStr = formatPrice(motionConfig.price);
+            const notes = document.getElementById('notesInput').value || '[tambahkan catatanmu di sini]';
+            const itemLabel = selectedItem ? selectedItem.label : 'Belum dipilih';
+
+            const summary = `LOUNGE MOTION — ORDER
+
+Motion: ${motionConfig.name}
+Tier: ${tier.label}
+Price: ${priceStr}
+Tags: ${motionConfig.tags.join(', ')}
+Item: ${itemLabel}
+Enchant Level: 30 / 30
+Notes: ${notes}`;
+
+            document.getElementById('orderSummary').textContent = summary;
+        }
+
+        // ============================================================
+        // 9.  ENABLE COPY BUTTON
+        // ============================================================
+
+        function enableCopyButton() {
+            const copyBtn = document.getElementById('copyBtn');
+            copyBtn.disabled = false;
+            copyBtn.innerHTML = '<i class="fas fa-copy"></i> COPY TO CLIPBOARD TO ORDER';
+        }
+
+        function resetCopiedState() {
+            if (isCopied) {
+                isCopied = false;
+                document.getElementById('platformSection').classList.remove('show');
+                const copyBtn = document.getElementById('copyBtn');
+                copyBtn.disabled = false;
+                copyBtn.innerHTML = '<i class="fas fa-copy"></i> COPY TO CLIPBOARD TO ORDER';
+            }
+        }
+
+        // ============================================================
+        // 10. EVENT LISTENERS
+        // ============================================================
+
+        // Toggle dropdown
+        document.getElementById('pickerInput').addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (!isItemsLoaded) return;
+            const dropdown = document.getElementById('pickerDropdown');
+            const arrow = document.getElementById('pickerArrow');
+            const isOpen = dropdown.classList.contains('open');
+
+            if (isOpen) {
+                dropdown.classList.remove('open');
+                arrow.classList.remove('open');
+                this.classList.remove('active');
+            } else {
+                dropdown.classList.add('open');
+                arrow.classList.add('open');
+                this.classList.add('active');
+                document.getElementById('itemSearch').focus();
+                renderItemList(document.getElementById('itemSearch').value);
+            }
+        });
+
+        // Search item
+        document.getElementById('itemSearch').addEventListener('input', function() {
+            renderItemList(this.value);
+        });
+
+        // Notes update
+        document.getElementById('notesInput').addEventListener('input', function() {
+            updateSummary();
+            resetCopiedState();
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const wrapper = document.getElementById('pickerWrapper');
+            if (wrapper && !wrapper.contains(e.target)) {
+                document.getElementById('pickerDropdown').classList.remove('open');
+                document.getElementById('pickerArrow').classList.remove('open');
+                document.getElementById('pickerInput').classList.remove('active');
+            }
+        });
+
+        // ============================================================
+        // 11. COPY TO CLIPBOARD
+        // ============================================================
+
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            if (this.disabled) return;
+
+            const text = document.getElementById('orderSummary').textContent;
+
+            const doCopy = () => {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    return navigator.clipboard.writeText(text);
+                } else {
+                    return new Promise((resolve, reject) => {
+                        try {
+                            const ta = document.createElement('textarea');
+                            ta.value = text;
+                            ta.style.position = 'fixed';
+                            ta.style.opacity = '0';
+                            document.body.appendChild(ta);
+                            ta.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(ta);
+                            resolve();
+                        } catch (e) {
+                            reject(e);
+                        }
+                    });
+                }
+            };
+
+            doCopy().then(() => {
+                isCopied = true;
+                document.getElementById('copyFeedback').classList.add('show');
+                this.disabled = true;
+                this.innerHTML = '<i class="fas fa-check"></i> ORDER COPIED!';
+                document.getElementById('platformSection').classList.add('show');
+
+                setTimeout(() => {
+                    document.getElementById('copyFeedback').classList.remove('show');
+                }, 3000);
+            }).catch(() => {
+                try {
+                    const ta = document.createElement('textarea');
+                    ta.value = text;
+                    ta.style.position = 'fixed';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    isCopied = true;
+                    document.getElementById('copyFeedback').classList.add('show');
+                    this.disabled = true;
+                    this.innerHTML = '<i class="fas fa-check"></i> ORDER COPIED!';
+                    document.getElementById('platformSection').classList.add('show');
+                    setTimeout(() => {
+                        document.getElementById('copyFeedback').classList.remove('show');
+                    }, 3000);
+                } catch (e) {
+                    alert('Gagal copy. Silakan copy manual.');
+                }
+            });
+        });
+
+        // ============================================================
+        // 12. PLATFORM BUTTONS
+        // ============================================================
+
+        document.querySelectorAll('.method-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const method = this.dataset.method;
+                let url = '#';
+                const summary = document.getElementById('orderSummary').textContent;
+
+                if (method === 'discord') {
+                    url = motionConfig.discordInvite || 'https://discord.gg/ya3xwGt7pb';
+                } else if (method === 'whatsapp') {
+                    url = 'https://wa.me/' + motionConfig.whatsappNumber + '?text=' + encodeURIComponent(summary);
+                } else if (method === 'googleform') {
+                    url = motionConfig.googleFormUrl || 'https://forms.google.com';
+                } else if (method === 'instagram') {
+                    url = 'https://www.instagram.com/' + motionConfig.instagramUsername + '/';
+                }
+
+                window.open(url, '_blank');
+            });
+        });
+
+        // ============================================================
+        // 13. VIDEO
+        // ============================================================
+
+        const video = document.querySelector('.detail-preview video');
+        if (video) {
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            video.play().catch(() => {});
+                        } else {
+                            video.pause();
+                        }
+                    });
+                }, { threshold: 0.5 });
+                observer.observe(video);
+            } else {
+                video.play().catch(() => {});
+            }
+
+            video.addEventListener('click', function() {
+                if (this.paused) this.play().catch(() => {});
+                else this.pause();
+            });
+        }
+
+        // ============================================================
+        // 14. INIT
+        // ============================================================
+
+        loadItems();
+    </script>
+
+</body>
+</html>

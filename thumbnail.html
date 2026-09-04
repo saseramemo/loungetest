@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOUNGE MOTION — Thumbnail</title>
+
+    <!-- Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ============================================================
+           THUMBNAIL — RefaShop Landing
+           ============================================================ */
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #0a0a0c;
+            color: #e8e8ec;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111116;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4a857;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e0b86a;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .text-gold {
+            color: #d4a857;
+        }
+
+        /* ---------- Navbar ---------- */
+        .navbar {
+            padding: 1rem 0;
+            border-bottom: 1px solid #16161c;
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 12, 0.92);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .logo span {
+            color: #d4a857;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #b0b0b8;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #fff;
+        }
+        .nav-links a.active {
+            color: #d4a857;
+        }
+
+        /* ---------- Main Content ---------- */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .refashop-center {
+            text-align: center;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        /* Logo RefaShop - BESAR */
+        .refashop-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .refashop-logo img {
+            width: 220px;
+            height: 220px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 40px rgba(212, 168, 87, 0.15));
+            transition: filter 0.4s ease, transform 0.4s ease;
+        }
+
+        .refashop-logo img:hover {
+            filter: drop-shadow(0 0 60px rgba(212, 168, 87, 0.3));
+            transform: scale(1.02);
+        }
+
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 0.5rem 0 1.5rem;
+        }
+
+        .divider .line {
+            flex: 1;
+            max-width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4a857, transparent);
+        }
+
+        .divider .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #d4a857;
+            box-shadow: 0 0 20px rgba(212, 168, 87, 0.3);
+        }
+
+        /* Powered By - BESAR */
+        .powered-by {
+            font-size: 1.4rem;
+            color: #5a5a64;
+            letter-spacing: 0.04em;
+        }
+
+        .powered-by .refa {
+            color: #d4a857;
+            font-weight: 800;
+            font-size: 1.6rem;
+            letter-spacing: 0.06em;
+            position: relative;
+        }
+
+        .powered-by .refa::after {
+            content: '™';
+            font-size: 0.65rem;
+            position: relative;
+            top: -0.6rem;
+            color: #7a7a84;
+            font-weight: 400;
+        }
+
+        /* ---------- Footer ---------- */
+        .footer {
+            border-top: 1px solid #16161c;
+            padding: 1.5rem 0;
+            color: #5a5a64;
+            font-size: 0.75rem;
+            text-align: center;
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem 1.4rem;
+            }
+
+            .refashop-logo img {
+                width: 160px;
+                height: 160px;
+            }
+
+            .powered-by {
+                font-size: 1.1rem;
+            }
+
+            .powered-by .refa {
+                font-size: 1.3rem;
+            }
+
+            .divider .line {
+                max-width: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .refashop-logo img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .powered-by {
+                font-size: 0.9rem;
+            }
+
+            .powered-by .refa {
+                font-size: 1.1rem;
+            }
+
+            .divider .line {
+                max-width: 40px;
+            }
+
+            .divider .dot {
+                width: 6px;
+                height: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    NAVBAR
+    ============================================================ -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">LOUNGE <span>MOTION</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Motion</a></li>
+                <li><a href="thumbnail.html" class="active">Thumbnail</a></li>
+                
+                <li><a href="https://discord.gg/ya3xwGt7pb" target="_blank" rel="noopener">Discord</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
+    <main class="main-content">
+        <div class="refashop-center">
+
+            <!-- Logo RefaShop - BESAR -->
+            <div class="refashop-logo">
+                <img src="assets/refashop.png" alt="RefaShop" />
+            </div>
+
+            <!-- Divider -->
+            <div class="divider">
+                <span class="line"></span>
+                <span class="dot"></span>
+                <span class="line"></span>
+            </div>
+
+            <!-- Powered By - BESAR -->
+            <div class="powered-by">
+                Powered by <span class="refa">RefaShop</span>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 LOUNGE MOTION. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
